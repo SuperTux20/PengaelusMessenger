@@ -1,7 +1,7 @@
 {
-    "name": "tuxwebapptest",
+    "name": "pengaelusmessenger",
     "version": "1.0.0",
-    "description": "a test webapp by tux",
+    "description": "a school project",
     "main": "index.js",
     "scripts": {
         "serve": "nodemon index.js"
