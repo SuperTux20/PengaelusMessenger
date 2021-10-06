@@ -11,11 +11,25 @@ const fs = require('fs');
 router.get('/', function(req, res) {
     try {
         const rawdata = fs.readFileSync('data.json'); // <Buffer <hex code>
-        var students = JSON.parse(rawdata);
+        var users = JSON.parse(rawdata);
 
-        console.log(students);
+        console.log(users);
 
-        res.status(200).json(students);
+        res.status(200).json(users);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+// get one of a resource - Read
+router.get('/:id', function(req, res) {
+    try {
+        const rawdata = fs.readFileSync('data.json'); // <Buffer <hex code>
+        var users = JSON.parse(rawdata);
+
+        console.log(users[req.params.id]);
+
+        res.status(200).json(users[req.params.id]);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
@@ -28,7 +42,7 @@ router.post('/', function(req, res) {
         // open the file
         const rawdata = fs.readFileSync('data.json');
         // decode the file (parse) so we can use it
-        var students = JSON.parse(rawdata);
+        var users = JSON.parse(rawdata);
 
         // add data, but controlled
         var rawBody = req.body;
@@ -42,14 +56,14 @@ router.post('/', function(req, res) {
         if (rawBody.password != null) newObj.password = rawBody.password;
 
         // get the actual index
-        newObj._id = students.length;
+        newObj._id = users.length;
 
 
         // add our new object to the array
-        students.push(newObj);
+        users.push(newObj);
 
         // save (write) the data back to the file
-        const data = fs.writeFileSync('data.json', JSON.stringify(students));
+        const data = fs.writeFileSync('data.json', JSON.stringify(users));
 
         // return the data to the user
         res.status(201).json(newObj);
@@ -60,7 +74,28 @@ router.post('/', function(req, res) {
 
 // updated a resource - Update
 router.patch('/:id', function(req, res) {
-    res.status(200).json({ message: "edited the resource" });
+    try {
+        console.log("Object being patched is: ", req.params.id, req.body);
+        // open the file
+        const rawdata = fs.readFileSync('data.json');
+        // decode the file (parse) so we can use it
+        var users = JSON.parse(rawdata);
+
+        // add data, but controlled
+        var id = req.params.id;
+        var rawBody = req.body;
+
+        if (rawBody.username != null) users[id].username = rawBody.username;
+        if (rawBody.password != null) users[id].password = rawBody.password;
+
+        // save (write) the data back to the file
+        const data = fs.writeFileSync('data.json', JSON.stringify(users));
+
+        // return the data to the user
+        res.status(200).json(users[id]);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
 });
 
 // delete a resource - Delete
@@ -70,15 +105,15 @@ router.delete('/:id', function(req, res) {
 
     // open the file for reading
     const rawdata = fs.readFileSync('data.json'); // <Buffer <hex code>
-    var students = JSON.parse(rawdata);
+    var users = JSON.parse(rawdata);
 
     // if found delete it
-    if (students.length > id) {
+    if (users.length > id) {
         // modify the object
-        students.splice(id, 1);
+        users.splice(id, 1);
 
         // write to the file
-        const data = fs.writeFileSync('data.json', JSON.stringify(students));
+        const data = fs.writeFileSync('data.json', JSON.stringify(users));
 
         res.status(200).json({ message: "ok" });
     } else {
