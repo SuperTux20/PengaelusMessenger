@@ -30,9 +30,21 @@ router.post('/', function(req, res) {
         // decode the file (parse) so we can use it
         var students = JSON.parse(rawdata);
 
-        var newObj = req.body;
+        // add data, but controlled
+        var rawBody = req.body;
 
-        newObj._id = 1;
+        var newObj = {
+            username: null,
+            password: null
+        };
+
+        if (rawBody.username != null) newObj.username = rawBody.username;
+        if (rawBody.password != null) newObj.password = rawBody.password;
+
+        // get the actual index
+        newObj._id = students.length;
+
+
         // add our new object to the array
         students.push(newObj);
 

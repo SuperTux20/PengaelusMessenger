@@ -1,0 +1,15 @@
+[{
+    "announcements": [{
+        "username": "SuperTux20",
+        "message": "The server is now open!"
+    }],
+    "general": [{
+            "username": "JustAnAlt",
+            "message": "Howdy fellas"
+        },
+        {
+            "username": "SuperTux20",
+            "message": "oh hi"
+        }
+    ]
+}]
