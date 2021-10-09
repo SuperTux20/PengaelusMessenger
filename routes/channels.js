@@ -97,7 +97,6 @@ router.post("/", function(req, res) {
 
             // return the data to the user
             res.status(201).json(newObj);
-            res.status(200).json({ message: `created channel ${req.query.cid}` });
         }
     } catch (err) {
         res.status(500).json({ message: err.message });

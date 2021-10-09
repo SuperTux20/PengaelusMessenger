@@ -2,7 +2,6 @@
 var express = require("express");
 var app = express();
 var userRoutes = require("./routes/users");
-var msgRoutes = require("./routes/messages");
 var channelRoutes = require("./routes/channels");
 var rootRoutes = require("./routes/root");
 var morgan = require("morgan");
@@ -21,12 +20,10 @@ app.use(morgan("combined"));
 app.use("/", rootRoutes);
 app.use("/users", userRoutes);
 app.use("/channels", channelRoutes);
-// app.use("/channels", msgRoutes);
 
 // serve out our app
 var server = app.listen(3000, function() {
     var host = server.address().address;
     var port = server.address().port;
-
-    console.log("Example app listening on ", host, port);
+    console.log("Pengaelus Messenger listening on ", host, port);
 });
