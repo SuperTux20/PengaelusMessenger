@@ -1,4 +1,4 @@
-# PengaelusMessenger
+# Pengaelus Messenger API
 A little chat API project I made for school. I wonder if I can take it further?
 
 ## Usage
