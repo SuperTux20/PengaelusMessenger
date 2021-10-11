@@ -12,16 +12,16 @@ echo "Getting all channels"
 curl -X GET "localhost:3000/channels"
 wait
 echo "Sending message in channel 0 as SuperTux20"
-curl -X POST -H "Content-Type: application/json" -d '{"username": "SuperTux20", "message": "The server is now open!"}' "localhost:3000/channels?cid=0"
+curl -X POST -H "Content-Type: application/json" -d '{"author": "SuperTux20", "message": "The server is now open!"}' "localhost:3000/channels?cid=0"
 wait
 echo "Sending message in channel 1 as SuperTux20"
-curl -X POST -H "Content-Type: application/json" -d '{"username": "SuperTux20", "message": "Howdy fellas!"}' "localhost:3000/channels?cid=1"
+curl -X POST -H "Content-Type: application/json" -d '{"author": "SuperTux20", "message": "Howdy fellas!"}' "localhost:3000/channels?cid=1"
 wait
 echo "Sending message in channel 1 as SammyGun"
-curl -X POST -H "Content-Type: application/json" -d '{"username": "SammyGun", "message": "Ayy, sup?"}' "localhost:3000/channels?cid=1"
+curl -X POST -H "Content-Type: application/json" -d '{"author": "SammyGun", "message": "Ayy, sup?"}' "localhost:3000/channels?cid=1"
 wait
 echo "Sending message in channel 1 as AlTheInventor"
-curl -X POST -H "Content-Type: application/json" -d '{"username": "AlTheInventor", "message": "yooooooooo"}' "localhost:3000/channels?cid=1"
+curl -X POST -H "Content-Type: application/json" -d '{"author": "AlTheInventor", "message": "yooooooooo"}' "localhost:3000/channels?cid=1"
 wait
 echo "Getting channel 1"
 curl -X GET "localhost:3000/channels?cid=1"

@@ -52,12 +52,12 @@ router.post("/", function(req, res) {
                 var rawBody = req.body;
 
                 var newObj = {
-                    username: null,
+                    author: null,
                     message: null,
                     send_timestamp: null
                 };
 
-                if (rawBody.username != null) newObj.username = rawBody.username;
+                if (rawBody.author != null) newObj.author = rawBody.author;
                 if (rawBody.message != null) newObj.message = rawBody.message;
                 var t = new Date(); // make sure there's no mismatched times
                 newObj.send_timestamp = `${t.getMonth()}/${t.getDate()}/${t.getFullYear()} ${t.getHours()}:${t.getMinutes() < 10 ? "0" + t.getMinutes() : t.getMinutes()}:${t.getSeconds() < 10 ? "0" + t.getSeconds() : t.getSeconds()} ${t.getHours() > 11 ? "PM" : "AM"}`;
@@ -125,7 +125,7 @@ router.patch("/", function(req, res) {
                         console.log(id);
                         console.log(rawBody);
 
-                        if (rawBody.username != null) messages[id].username = rawBody.username;
+                        if (rawBody.author != null) messages[id].author = rawBody.author;
                         if (rawBody.message != null) messages[id].message = rawBody.message;
                         var t = new Date(); // make sure there's no mismatched times
                         messages[id].edit_timestamp = `${t.getMonth()}/${t.getDate()}/${t.getFullYear()} ${t.getHours()}:${t.getMinutes() < 10 ? "0" + t.getMinutes() : t.getMinutes()}:${t.getSeconds() < 10 ? "0" + t.getSeconds() : t.getSeconds()} ${t.getHours() > 11 ? "PM" : "AM"}`;
