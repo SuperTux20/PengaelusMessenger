@@ -60,7 +60,7 @@ router.post("/", function(req, res) {
                 if (rawBody.username != null) newObj.username = rawBody.username;
                 if (rawBody.message != null) newObj.message = rawBody.message;
                 var t = new Date(); // make sure there's no mismatched times
-                newObj.send_timestamp = `${t.getMonth()}/${t.getDate()}/${t.getFullYear()} ${t.getHours()}:${t.getMinutes() < 10 ? "0" + t.getMinutes() : t.getMinutes()}:${t.getSeconds() < 10 ? "0" + t.getSeconds() : t.getSeconds()} ${t.getHours() > 11 ? "PM" : "AM"}`;;
+                newObj.send_timestamp = `${t.getMonth()}/${t.getDate()}/${t.getFullYear()} ${t.getHours()}:${t.getMinutes() < 10 ? "0" + t.getMinutes() : t.getMinutes()}:${t.getSeconds() < 10 ? "0" + t.getSeconds() : t.getSeconds()} ${t.getHours() > 11 ? "PM" : "AM"}`;
 
                 // get the actual index
                 newObj._id = messages.length;
@@ -69,7 +69,7 @@ router.post("/", function(req, res) {
                 messages.push(newObj);
 
                 // save (write) the data back to the file
-                const data = fs.writeFileSync("channels.json", JSON.stringify(channels));
+                fs.writeFileSync("channels.json", JSON.stringify(channels));
 
                 // return the data to the user
                 res.status(201).json(newObj);
@@ -93,7 +93,7 @@ router.post("/", function(req, res) {
             channels.push(newObj);
 
             // save (write) the data back to the file
-            const data = fs.writeFileSync("channels.json", JSON.stringify(channels));
+            fs.writeFileSync("channels.json", JSON.stringify(channels));
 
             // return the data to the user
             res.status(201).json(newObj);
@@ -128,10 +128,10 @@ router.patch("/", function(req, res) {
                         if (rawBody.username != null) messages[id].username = rawBody.username;
                         if (rawBody.message != null) messages[id].message = rawBody.message;
                         var t = new Date(); // make sure there's no mismatched times
-                        messages[id].edit_timestamp = `${t.getMonth()}/${t.getDate()}/${t.getFullYear()} ${t.getHours()}:${t.getMinutes() < 10 ? "0" + t.getMinutes() : t.getMinutes()}:${t.getSeconds() < 10 ? "0" + t.getSeconds() : t.getSeconds()} ${t.getHours() > 11 ? "PM" : "AM"}`;;
+                        messages[id].edit_timestamp = `${t.getMonth()}/${t.getDate()}/${t.getFullYear()} ${t.getHours()}:${t.getMinutes() < 10 ? "0" + t.getMinutes() : t.getMinutes()}:${t.getSeconds() < 10 ? "0" + t.getSeconds() : t.getSeconds()} ${t.getHours() > 11 ? "PM" : "AM"}`;
 
                         // save (write) the data back to the file
-                        const data = fs.writeFileSync("channels.json", JSON.stringify(channels));
+                        fs.writeFileSync("channels.json", JSON.stringify(channels));
 
                         // return the data to the user
                         res.status(200).json(messages[id]);
@@ -145,7 +145,7 @@ router.patch("/", function(req, res) {
                     if (rawBody.name != null) channels[id].name = rawBody.name;
 
                     // save (write) the data back to the file
-                    const data = fs.writeFileSync("channels.json", JSON.stringify(channels));
+                    fs.writeFileSync("channels.json", JSON.stringify(channels));
 
                     // return the data to the user
                     res.status(200).json(channels[id]);
@@ -173,10 +173,10 @@ router.delete("/", function(req, res) {
                     messages.splice(req.query.mid, 1);
 
                     // refresh ids
-                    for (num of Array(messages.length).keys()) messages[num]._id = num;
+                    for (let num of Array(messages.length).keys()) messages[num]._id = num;
 
                     // write to the file
-                    const data = fs.writeFileSync("channels.json", JSON.stringify(channels));
+                    fs.writeFileSync("channels.json", JSON.stringify(channels));
 
                     res.status(200).json({ message: `message ${req.query.mid} in channel ${req.query.cid} deleted` });
                 } else { res.status(404).json({ message: `message ${req.query.mid} does not exist` }); }
@@ -186,10 +186,10 @@ router.delete("/", function(req, res) {
                 channels.splice(req.query.cid, 1);
 
                 // refresh ids
-                for (num of Array(channels.length).keys()) channels[num]._id = num;
+                for (let num of Array(channels.length).keys()) channels[num]._id = num;
 
                 // write to the file
-                const data = fs.writeFileSync("channels.json", JSON.stringify(channels));
+                fs.writeFileSync("channels.json", JSON.stringify(channels));
 
                 res.status(200).json({ message: `deleted channel ${req.query.cid}` });
             }

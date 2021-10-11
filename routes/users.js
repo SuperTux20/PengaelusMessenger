@@ -55,7 +55,7 @@ router.post("/", function(req, res) {
         users.push(newObj);
 
         // save (write) the data back to the file
-        const data = fs.writeFileSync("users.json", JSON.stringify(users));
+        fs.writeFileSync("users.json", JSON.stringify(users));
 
         // return the data to the user
         res.status(201).json(newObj);
@@ -82,7 +82,7 @@ router.patch("/", function(req, res) {
             if (rawBody.password != null) users[id].password = rawBody.password;
 
             // save (write) the data back to the file
-            const data = fs.writeFileSync("users.json", JSON.stringify(users));
+            fs.writeFileSync("users.json", JSON.stringify(users));
 
             // return the data to the user
             res.status(200).json(users[id]);
@@ -103,10 +103,10 @@ router.delete("/", function(req, res) {
             users.splice(req.query.uid, 1);
 
             // refresh ids
-            for (num of Array(users.length).keys()) users[num]._id = num;
+            for (let num of Array(users.length).keys()) users[num]._id = num;
 
             // write to the file
-            const data = fs.writeFileSync("users.json", JSON.stringify(users));
+            fs.writeFileSync("users.json", JSON.stringify(users));
 
             res.status(200).json({ message: `deleted user ${req.query.uid}` });
         } else res.status(404).json({ message: `user ${req.query.uid} does not exist` });
