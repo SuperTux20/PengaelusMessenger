@@ -1,22 +1,22 @@
 {
-    "name": "pengaelusmessenger",
-    "version": "1.0.0",
-    "description": "a school project",
-    "main": "index.js",
-    "scripts": {
-        "serve": "nodemon index.js",
-        "cdemo": "bash channel_demo.sh",
-        "udemo": "bash user_demo.sh"
-    },
-    "author": "tuxpengwin@gmail.com",
-    "license": "ISC",
-    "dependencies": {
-        "express": "^4.17.1",
-        "jshint": "^2.13.1",
-        "morgan": "^1.10.0",
-        "querystring": "^0.2.1"
-    },
-    "devDependencies": {
-        "nodemon": "^2.0.13"
-    }
+	"name": "pengaelusmessenger",
+	"version": "1.0.0",
+	"description": "a school project",
+	"main": "index.js",
+	"scripts": {
+		"serve": "nodemon index.js",
+		"cdemo": "bash channel_demo.sh",
+		"udemo": "bash user_demo.sh"
+	},
+	"author": "tuxpengwin@gmail.com",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.17.1",
+		"jshint": "^2.13.1",
+		"morgan": "^1.10.0",
+		"querystring": "^0.2.1"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.13"
+	}
 }

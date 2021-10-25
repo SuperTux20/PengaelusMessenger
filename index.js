@@ -9,7 +9,7 @@ var morgan = require("morgan");
 
 // setup our app (server/middleware)
 app.use(express.urlencoded({
-    extended: true
+	extended: true
 }));
 app.use(express.json());
 app.use(morgan("combined"));
@@ -23,7 +23,7 @@ app.use("/channels", channelRoutes);
 
 // serve out our app
 var server = app.listen(3000, function() {
-    var host = server.address().address;
-    var port = server.address().port;
-    console.log("Pengaelus Messenger listening on ", host, port);
+	var host = server.address().address;
+	var port = server.address().port;
+	console.log("Pengaelus Messenger listening on ", host, port);
 });

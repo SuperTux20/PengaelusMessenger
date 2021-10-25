@@ -1,6 +1,10 @@
 #!/bin/bash
 
-wait() { echo; echo; sleep 1; }
+wait() {
+	echo
+	echo
+	sleep 1
+}
 
 echo "Creating channel announcements"
 curl -X POST -H "Content-Type: application/json" -d '{"name": "announcements"}' "localhost:3000/channels"
@@ -33,16 +37,8 @@ echo "Editing message 2 in channel 1"
 curl -X PATCH -H "Content-Type: application/json" -d '{"message": "Yo"}' "localhost:3000/channels?cid=1&mid=2"
 wait
 
-for i in {0..2}
-do
-    echo "Deleting message 0 in channel 1"
-    curl -X DELETE "localhost:3000/channels?cid=1&mid=0"
-    wait
-done
-
-for i in {0..1}
-do
-    echo "Deleting channel 0"
-    curl -X DELETE "localhost:3000/channels?cid=0"
-    wait
+for i in {0..2}; do
+	echo "Deleting message 0 in channel 1"
+	curl -X DELETE "localhost:3000/channels?cid=1&mid=0"
+	wait
 done

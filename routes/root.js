@@ -6,7 +6,7 @@ var router = express.Router();
 
 // base route localhost:port/
 router.get("/", function(req, res) {
-    res.status(200).json({ message: "welcome to Pengaelus Messenger" });
+	res.status(200).json({ message: "welcome to Pengaelus Messenger" });
 });
 
 

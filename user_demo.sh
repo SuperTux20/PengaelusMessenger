@@ -1,6 +1,10 @@
 #!/bin/bash
 
-wait() { echo; echo; sleep 1; }
+wait() {
+	echo
+	echo
+	sleep 1
+}
 
 echo "Creating user bob"
 curl -X POST -H "Content-Type: application/json" -d '{"username": "bob", "password": "password"}' "localhost:3000/users"
@@ -23,9 +27,8 @@ wait
 echo "Changing user 3's password"
 curl -X PATCH -H "Content-Type: application/json" -d '{"password": "bottlecap"}' "localhost:3000/users?uid=3"
 wait
-for i in {0..3}
-do
-    echo "Deleting user 0"
-    curl -X DELETE "localhost:3000/users?uid=0"
-    wait
+for i in {0..3}; do
+	echo "Deleting user 0"
+	curl -X DELETE "localhost:3000/users?uid=0"
+	wait
 done
