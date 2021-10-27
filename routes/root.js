@@ -1,16 +1,9 @@
-// dependencies
-var express = require("express");
+var express = require('express');
 var router = express.Router();
 
-// --------------------------------------------------------- Endpoints/Routes
-
-// base route localhost:port/
-router.get("/", function(req, res) {
+// GET home page.
+router.get('/', function(req, res, next) {
 	res.status(200).json({ message: "welcome to Pengaelus Messenger" });
 });
-
-
-
-// ----------------------------------------------------------------- end routes/endpoints
 
 module.exports = router;

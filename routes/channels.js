@@ -54,13 +54,14 @@ router.post("/", function(req, res) {
 				var newObj = {
 					author: null,
 					message: null,
-					send_timestamp: null
+					sent_on: null,
+					edited_on: null
 				};
 
 				if (rawBody.author != null) newObj.author = rawBody.author;
 				if (rawBody.message != null) newObj.message = rawBody.message;
 				var t = new Date(); // make sure there's no mismatched times
-				newObj.send_timestamp = `${t.getMonth()}/${t.getDate()}/${t.getFullYear()} ${t.getHours()}:${t.getMinutes() < 10 ? "0" + t.getMinutes() : t.getMinutes()}:${t.getSeconds() < 10 ? "0" + t.getSeconds() : t.getSeconds()} ${t.getHours() > 11 ? "PM" : "AM"}`;
+				newObj.sent_on = `${t.getMonth()}/${t.getDate()}/${t.getFullYear()} ${t.getHours()}:${t.getMinutes() < 10 ? "0" + t.getMinutes() : t.getMinutes()}:${t.getSeconds() < 10 ? "0" + t.getSeconds() : t.getSeconds()} ${t.getHours() > 11 ? "PM" : "AM"}`;
 
 				// get the actual index
 				newObj._id = messages.length;
@@ -128,7 +129,7 @@ router.patch("/", function(req, res) {
 						if (rawBody.author != null) messages[id].author = rawBody.author;
 						if (rawBody.message != null) messages[id].message = rawBody.message;
 						var t = new Date(); // make sure there's no mismatched times
-						messages[id].edit_timestamp = `${t.getMonth()}/${t.getDate()}/${t.getFullYear()} ${t.getHours()}:${t.getMinutes() < 10 ? "0" + t.getMinutes() : t.getMinutes()}:${t.getSeconds() < 10 ? "0" + t.getSeconds() : t.getSeconds()} ${t.getHours() > 11 ? "PM" : "AM"}`;
+						messages[id].edited_on = `${t.getMonth()}/${t.getDate()}/${t.getFullYear()} ${t.getHours()}:${t.getMinutes() < 10 ? "0" + t.getMinutes() : t.getMinutes()}:${t.getSeconds() < 10 ? "0" + t.getSeconds() : t.getSeconds()} ${t.getHours() > 11 ? "PM" : "AM"}`;
 
 						// save (write) the data back to the file
 						fs.writeFileSync("channels.json", JSON.stringify(channels));

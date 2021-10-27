@@ -42,3 +42,9 @@ for i in {0..2}; do
 	curl -X DELETE "localhost:3000/channels?cid=1&mid=0"
 	wait
 done
+
+for i in {0..1}; do
+	echo "Deleting channel 0"
+	curl -X DELETE "localhost:3000/channels?cid=0"
+	wait
+done
